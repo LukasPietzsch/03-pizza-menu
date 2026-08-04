@@ -15,16 +15,6 @@ function App() {
     );
 }
 
-function Pizza() {
-    return (
-        <div className="container">
-            <img src="pizzas/spinaci.jpg" alt = "Pizza spinaci" />
-            <h3>Pizza Pizza!</h3>
-            <p>Tomato</p>
-        </div>
-    );
-}
-
 function Header() {
     // const style = {color: "red", fontSize: '38px', textTransform: "uppercase"};
     const style = {color: "red"};
@@ -37,13 +27,34 @@ function Header() {
 }
 
 function Menu() {
+    const fungi = pizzaData[3];
+
+    console.log(fungi);
+
     return (
         <main className="menu">
             <h2>Our Menu</h2>
-            <Pizza />
-            <Pizza />
-            <Pizza />
+            <Pizza
+                name = "Pizza Salamino"
+                ingredients = "Tomato, mozarella, and pepperoni"
+                price = {15}
+                photoName = "pizzas/salamino.jpg"
+                soldOut = {true}
+            />
+            {/*<Pizza />*/}
+            {/*<Pizza />*/}
         </main>
+    );
+}
+
+function Pizza( props ) {
+    return (
+        <div className="container">
+            <img src= {props.photoName} alt = {props.name} />
+            <h3>{props.name}</h3>
+            <p>{props.ingredients}</p>
+            <span>{props.price + 3}</span>
+        </div>
     );
 }
 
