@@ -7,7 +7,7 @@ import pizzaData from "./data";
 
 function App() {
     return (
-        <div>
+        <div className="container">
             <Header />
             <Menu />
             <Footer />
@@ -27,22 +27,20 @@ function Header() {
 }
 
 function Menu() {
-    const fungi = pizzaData[3];
-
-    console.log(fungi);
-
     return (
         <main className="menu">
             <h2>Our Menu</h2>
 
-            <ul className="pizzas">
-            {pizzaData.map((item) => (
-                <Pizza
-                    pizzaObj = {item}
-                    key={item.name}
-                />
-            ))}
-            </ul>
+            { pizzaData.length > 0 &&
+                (<ul className="pizzas">
+                {pizzaData.map((item) => (
+                    <Pizza
+                        pizzaObj = {item}
+                        key={item.name}
+                    />
+                ))}
+                </ul>)
+            }
         </main>
     );
 }
@@ -65,16 +63,19 @@ function Footer() {
     const hour = new Date().getHours();
 
     const openHour = 7;
-    const closeHour = 17;
+    const closeHour = 18;
 
     const isOpen = hour >= openHour && hour < closeHour;
 
-    // if (hour >= openHour && hour < closeHour)
-    // {
-    //     alert("We're currently open!");
-    // }
-
-    return <footer className="footer">{new Date().toLocaleTimeString()} We're currently {isOpen ? "open" : "closed"}!</footer>;
+    return <footer className="footer">
+        {isOpen && (<div className="order">
+                <p>
+                    We're currently open till {closeHour}:00. Come visit us or order here:
+                </p>
+                <button className="btn">Order</button>
+            </div>
+            )}
+    </footer>;
 }
 
 
