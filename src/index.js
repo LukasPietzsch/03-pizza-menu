@@ -21,7 +21,7 @@ function Header() {
 
     return (
         <header className="header">
-            <h1 style={style}>Fast React Pizza co.</h1>
+            <h1 style={style}>2 Fast 2 Pizza GmbH</h1>
         </header>
     );
 }
@@ -54,17 +54,17 @@ function Menu() {
 function Pizza({pizzaObj}) {
     const pizza = pizzaObj;
 
-    if (pizza.soldOut) {
-        return null;
-    }
+    // if (pizza.soldOut) {
+    //     return null;
+    // }
 
     return (
-        <li className="pizza">
+        <li className={`pizza ${pizza.soldOut ? "sold-out" : ""}`}>
             <img src= {pizza.photoName} alt = {pizza.name} />
             <div>
                 <h3>{pizza.name}</h3>
                 <p>{pizza.ingredients}</p>
-                <span>{pizza.price + 3}</span>
+                <span>{pizza.soldOut ?  'Sold out' : pizza.price + ' €'}</span>
             </div>
         </li>
     );
