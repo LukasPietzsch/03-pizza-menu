@@ -27,27 +27,32 @@ function Header() {
 }
 
 function Menu() {
+    // const pizzaData = [];
     return (
         <main className="menu">
             <h2>Our Menu</h2>
 
+
             { pizzaData.length > 0 ?
-                (<ul className="pizzas">
-                {pizzaData.map((item) => (
-                    <Pizza
-                        pizzaObj = {item}
-                        key={item.name}
-                    />
-                ))}
-                </ul>) :
+                (<React.Fragment>
+                    <p>Authentic Italian cuisine</p>
+                    <ul className="pizzas">
+                    {pizzaData.map((item) => (
+                        <Pizza
+                            pizzaObj = {item}
+                            key={item.name}
+                        />
+                    ))}
+                    </ul>
+                </React.Fragment>) :
                 (<p>No Menu Is Available (yet), please come back later</p>)
             }
         </main>
     );
 }
 
-function Pizza( props ) {
-    const pizza = props.pizzaObj;
+function Pizza({pizzaObj}) {
+    const pizza = pizzaObj;
 
     if (pizza.soldOut) {
         return null;
@@ -78,10 +83,10 @@ function Footer() {
     </footer>;
 }
 
-function Order(props) {
+function Order({closeHour}) {
    return (<div className="order">
            <p>
-               We're currently open till {props.closeHour}:00. Come visit us or order here:
+               We're currently open till {closeHour}:00. Come visit us or order here:
            </p>
            <button className="btn">Order</button>
        </div>
